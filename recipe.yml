@@ -20,6 +20,9 @@ modules:
   source:
     packages:
     - vim
+    - curl 
+    - ca-certificates
+
 
 - name: example-commands
   type: shell
