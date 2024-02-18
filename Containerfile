@@ -2,7 +2,6 @@ FROM ghcr.io/vanilla-os/desktop:main
 LABEL maintainer='self-maintained'
 ARG DEBIAN_FRONTEND=noninteractive
 ADD includes.container /
-ADD sources /sources
 RUN lpkg --unlock && apt-get update
 RUN echo Example output
 RUN bash /deb-pkgs/install-debs.sh && rm -rf /deb-pkgs
