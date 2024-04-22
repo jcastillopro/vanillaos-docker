@@ -36,7 +36,6 @@ stages:
     # Add the repository to Apt sources:
     - apt-get update
     - curl -fsSL https://get.docker.com | sh
-    - sudo usermod -aG docker jcastillo
 
   - name: set-permisos-docker
     type: shell
