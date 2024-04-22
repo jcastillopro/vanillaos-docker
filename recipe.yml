@@ -20,9 +20,9 @@ stages:
 
   # Put your custom actions behind this comment
 
-    - name: docker
-  type: shell
-  commands:
+  - name: docker
+    type: shell
+    commands:
     # Add Docker's official GPG key:
     - apt-get update
     - apt-get install ca-certificates curl gnupg lsb-release -y
