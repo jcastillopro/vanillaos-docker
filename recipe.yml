@@ -20,7 +20,7 @@ stages:
 
   # Put your custom actions behind this comment
 
-  - name: docker
+  - name: requisitos de docker
     type: shell
     commands:
     # Add Docker's official GPG key:
@@ -30,16 +30,19 @@ stages:
     - curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
     - chmod a+r /etc/apt/keyrings/docker.asc
 
+  - name: docker
+    type: shell
+    commands:
     # Add the repository to Apt sources:
     - apt-get update
     - curl -fsSL https://get.docker.com | sh
     - sudo usermod -aG docker jcastillo
 
-  - name: example-packages
-    type: apt
-    source:
-      packages:
-      - vim
+  - name: set permisos docker
+    type: shell
+    commands:
+    usermod -aG docker $USER
+
 
   - name: example-commands
     type: shell
