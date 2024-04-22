@@ -40,9 +40,9 @@ stages:
   - name: set-permisos-docker
     type: shell
     commands:
-    - sudo adduser jcastillo
-    - sudo groupadd docker
-    - sudo usermod -aG docker jcastillo
+    - adduser jcastillo
+    - groupadd docker
+    - usermod -aG docker jcastillo
 
 
   - name: example-commands
