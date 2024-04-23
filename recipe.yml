@@ -49,7 +49,6 @@ stages:
     commands:
     - if ! getent group docker; then groupadd docker; fi
     - usermod -aG docker jcastillo
-    - usermod -aG docker $USER
 
 
   - name: example-commands
