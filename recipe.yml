@@ -47,7 +47,7 @@ stages:
   - name: set-group
     type: shell
     commands:
-    - groupadd docker
+    - if ! getent group docker; then groupadd docker; fi
     - usermod -aG docker jcastillo
 
 
