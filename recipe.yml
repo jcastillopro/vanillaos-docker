@@ -61,12 +61,12 @@ stages:
     includes:
       - modules/50-install-debs.yml\
 
-  - name: example-commands
+  - name: example-commands1
     type: shell
     commands:
     - chgrp docker /run/host/run/docker.sock
 
-  - name: example-commands
+  - name: example-commands2
     type: shell
     commands:
     - chmod 660 /run/host/run/docker.sock
