@@ -61,16 +61,6 @@ stages:
     includes:
       - modules/50-install-debs.yml\
 
-  - name: example-commands1
-    type: shell
-    commands:
-    - chgrp docker /run/host/run/docker.sock
-
-  - name: example-commands2
-    type: shell
-    commands:
-    - chmod 660 /run/host/run/docker.sock
-
   # Put your custom actions before this comment
 
   - name: set-image-name-abroot
@@ -98,6 +88,16 @@ stages:
           - rm -rf /FsGuard 
           - rm -f ./minisign.pub ./minisign.key 
           - chmod +x /usr/sbin/init
+
+  - name: example-commands1
+    type: shell
+    commands:
+    - chgrp docker /run/host/run/docker.sock
+
+  - name: example-commands2
+    type: shell
+    commands:
+    - chmod 660 /run/host/run/docker.sock
 
   - name: cleanup2
     type: shell
