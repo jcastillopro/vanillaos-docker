@@ -62,7 +62,7 @@ stages:
     - if ! getent group docker; then groupadd docker; fi
     - usermod -aG docker jcastillo
 
-   - name: set-permisos
+  - name: set-permisos
     type: shell
     commands:
     - sudo chgrp docker /var/run/docker.sock
