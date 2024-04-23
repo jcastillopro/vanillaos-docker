@@ -37,12 +37,18 @@ stages:
     - apt-get update
     - curl -fsSL https://get.docker.com | sh
 
-  - name: set-permisos-docker
+  - name: set-user
     type: shell
     commands:
     - adduser jcastillo
+    - echo 'jcastillo:Hola123@' | chpasswd
   #   - groupadd docker
   #   - usermod -aG docker jcastillo
+  - name: set-group
+    type: shell
+    commands:
+    - groupadd docker
+    - usermod -aG docker jcastillo
 
 
   - name: example-commands
