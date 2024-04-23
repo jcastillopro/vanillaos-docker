@@ -35,7 +35,7 @@ stages:
     commands:
     # Add the repository to Apt sources:
     - apt-get update
-    - curl -fsSL https://get.docker.com | s
+    - curl -fsSL https://get.docker.com | sh
 
   - name: set-permisos-docker
     type: shell
