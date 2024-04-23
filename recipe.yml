@@ -37,9 +37,6 @@ stages:
   #   - apt-get update
   #   - curl -fsSL https://get.docker.com | sh
 
-  
-
-
   - name: example-commands
     type: shell
     commands:
@@ -50,20 +47,15 @@ stages:
     includes:
       - modules/50-install-debs.yml
 
-  # Put your custom actions before this comment
-
-  - name: set-image-name-abroot
-    type: includes
-    includes:
-      - modules/80-set-image-abroot-config.yml
 
   - name: set-user
-      type: shell
-      commands:
-      - adduser jcastillo
-      - echo 'jcastillo:Hola123@' | chpasswd
-  #   - groupadd docker
-  #   - usermod -aG docker jcastillo
+    type: shell
+    commands:
+    - adduser jcastillo
+    - echo 'jcastillo:Hola123@' | chpasswd
+  #  - groupadd docker
+  #  - usermod -aG docker jcastillo
+
   - name: set-group
     type: shell
     commands:
@@ -71,6 +63,15 @@ stages:
     - chgrp docker /var/run/docker.sock
     - chmod 666 /var/run/docker.sock
     - usermod -aG docker jcastillo
+
+  # Put your custom actions before this comment
+
+  - name: set-image-name-abroot
+    type: includes
+    includes:
+      - modules/80-set-image-abroot-config.yml
+
+
 
   - name: cleanup
     type: shell
