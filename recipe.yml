@@ -37,18 +37,7 @@ stages:
   #   - apt-get update
   #   - curl -fsSL https://get.docker.com | sh
 
-  - name: set-user
-    type: shell
-    commands:
-    - adduser jcastillo
-    - echo 'jcastillo:Hola123@' | chpasswd
-  #   - groupadd docker
-  #   - usermod -aG docker jcastillo
-  - name: set-group
-    type: shell
-    commands:
-    - if ! getent group docker; then groupadd docker; fi
-    - usermod -aG docker jcastillo
+  
 
 
   - name: example-commands
@@ -67,6 +56,21 @@ stages:
     type: includes
     includes:
       - modules/80-set-image-abroot-config.yml
+
+- name: set-user
+    type: shell
+    commands:
+    - adduser jcastillo
+    - echo 'jcastillo:Hola123@' | chpasswd
+  #   - groupadd docker
+  #   - usermod -aG docker jcastillo
+  - name: set-group
+    type: shell
+    commands:
+    - if ! getent group docker; then groupadd docker; fi
+    - chgrp docker /var/run/docker.sock
+    - chmod 666 /var/run/docker.sock
+    - usermod -aG docker jcastillo
 
   - name: cleanup
     type: shell
