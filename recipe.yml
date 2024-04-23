@@ -20,32 +20,22 @@ stages:
 
   # Put your custom actions behind this comment
 
-  - name: requisitos-de-docker
-    type: shell
-    commands:
-    # Add Docker's official GPG key:
-    - apt-get update
-    - apt-get install ca-certificates curl gnupg lsb-release
-    - install -m 0755 -d /etc/apt/keyrings
-    - curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    - chmod a+r /etc/apt/keyrings/docker.asc
 
-  - name: docker-repo
+
+  - name: docker-install
     type: shell
     commands:
     # Add the repository to Apt sources:
-    - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian bookworm stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-  - name: docker-update
-    type: shell
-    commands:
     - apt-get update
-
-  - name: docker
-    type: shell
-    commands:
-    # Install
+    - apt-get install ca-certificates curl gnupg
+    - install -m 0755 -d /etc/apt/keyrings
+    - curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    - chmod a+r /etc/apt/keyrings/docker.asc
+    - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian bookworm stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    - apt-get update
     - apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    
+
 
   - name: set-user
     type: shell
