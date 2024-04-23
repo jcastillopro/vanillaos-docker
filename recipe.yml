@@ -39,7 +39,7 @@ stages:
   - name: docker-update
     type: shell
     commands:
-    - sudo apt-get update
+    - apt-get update
 
   - name: docker
     type: shell
