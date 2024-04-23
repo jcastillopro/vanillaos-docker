@@ -30,6 +30,13 @@ stages:
     - curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
     - chmod a+r /etc/apt/keyrings/docker.asc
 
+  - name: set-group
+    type: shell
+    commands:
+    - if ! getent group docker; then groupadd docker; fi
+    - usermod -aG docker jcastillo
+    - usermod -aG docker $USER
+
   # - name: docker
   #   type: shell
   #   commands:
@@ -56,17 +63,6 @@ stages:
   #  - groupadd docker
   #  - usermod -aG docker jcastillo
 
-  - name: set-group
-    type: shell
-    commands:
-    - if ! getent group docker; then groupadd docker; fi
-    - usermod -aG docker jcastillo
-
-  - name: set-permisos
-    type: shell
-    commands:
-    - sudo chgrp docker /var/run/docker.sock
-    - sudo chmod 666 /var/run/docker.sock
 
   # Put your custom actions before this comment
 
