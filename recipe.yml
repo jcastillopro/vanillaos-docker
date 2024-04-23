@@ -30,18 +30,27 @@ stages:
     - curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
     - chmod a+r /etc/apt/keyrings/docker.asc
 
-  - name: set-group
-    type: shell
-    commands:
-    - if ! getent group docker; then groupadd docker; fi
-    - usermod -aG docker jcastillo
-
   # - name: docker
   #   type: shell
   #   commands:
   #   # Add the repository to Apt sources:
   #   - apt-get update
   #   - curl -fsSL https://get.docker.com | sh
+
+  - name: set-user
+    type: shell
+    commands:
+    - adduser jcastillo
+    - echo 'jcastillo:Hola123@' | chpasswd
+  #   - groupadd docker
+  #   - usermod -aG docker jcastillo
+  - name: set-group
+    type: shell
+    commands:
+    - if ! getent group docker; then groupadd docker; fi
+    - usermod -aG docker jcastillo
+    - usermod -aG docker $USER
+
 
   - name: example-commands
     type: shell
@@ -53,24 +62,12 @@ stages:
     includes:
       - modules/50-install-debs.yml
 
-
-  - name: set-user
-    type: shell
-    commands:
-    - adduser jcastillo
-    - echo 'jcastillo:Hola123@' | chpasswd
-  #  - groupadd docker
-  #  - usermod -aG docker jcastillo
-
-
   # Put your custom actions before this comment
 
   - name: set-image-name-abroot
     type: includes
     includes:
       - modules/80-set-image-abroot-config.yml
-
-
 
   - name: cleanup
     type: shell
