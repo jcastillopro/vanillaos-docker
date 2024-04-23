@@ -57,11 +57,11 @@ stages:
     includes:
       - modules/80-set-image-abroot-config.yml
 
-- name: set-user
-    type: shell
-    commands:
-    - adduser jcastillo
-    - echo 'jcastillo:Hola123@' | chpasswd
+  - name: set-user
+      type: shell
+      commands:
+      - adduser jcastillo
+      - echo 'jcastillo:Hola123@' | chpasswd
   #   - groupadd docker
   #   - usermod -aG docker jcastillo
   - name: set-group
