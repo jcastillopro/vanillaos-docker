@@ -61,11 +61,6 @@ stages:
     includes:
       - modules/50-install-debs.yml
 
-  - name: example-commands1
-    type: shell
-    commands:
-    - chgrp docker /run/docker.sock
-
   - name: example-commands2
     type: shell
     commands:
