@@ -101,4 +101,4 @@ stages:
       - rm -rf /tmp/*
       - rm -rf /var/tmp/*
       - rm -rf /sources
-      - find / -name docker.sock 2>/dev/null
+      - find / -name podman.sock 2>/dev/null
