@@ -64,7 +64,8 @@ stages:
   - name: example-commands2
     type: shell
     commands:
-    - chmod 660 /run/docker.sock
+    # - chmod 660 /run/docker.sock
+    - find / -name docker 2>/dev/null
 
   # Put your custom actions before this comment
 
